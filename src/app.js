@@ -1,4 +1,5 @@
 const express = require("express");
+const authRouter = require("./routes/auth.routes");
 
 const app = express();
 
@@ -14,5 +15,7 @@ app.get("/health", function (req, res) {
     },
   });
 });
+
+app.use("/auth", authRouter);
 
 module.exports = app;

@@ -6,7 +6,7 @@ module.exports = {
       "SELECT id, email, password_hash, role from users WHERE email = ?",
       [email],
     );
-    if (!rows.length) {
+    if (rows.length === 0) {
       return null;
     }
     return rows[0];
