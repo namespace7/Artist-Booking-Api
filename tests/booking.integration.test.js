@@ -45,12 +45,6 @@ describe("Booking status integration", function () {
       ],
     );
     bookingId = bookingResult.insertId;
-    console.log({
-      artistId,
-      clientId,
-      bookingId,
-    });
-
     token = jwt.sign(
       { userId: artistId, role: "artist" },
       process.env.JWT_SECRET,
@@ -80,7 +74,6 @@ describe("Booking status integration", function () {
       .set("Authorization", "Bearer " + token)
       .send({ status: "confirmed" });
 
-    console.log("Booking status response:", response.status, response.body);
     expect(response.status).toBe(422);
     expect(response.body.success).toBe(false);
     expect(response.body.error).toBe(
