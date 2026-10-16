@@ -1,0 +1,842 @@
+{
+  "info": {
+    "name": "Artist Booking API",
+    "description": null,
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Endpoint",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "protocol": "",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ],
+          "query": [],
+          "variable": []
+        }
+      },
+      "response": [
+        {
+          "name": "example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "protocol": "",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "x-powered-by",
+              "value": "Express",
+              "name": "x-powered-by",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8",
+              "name": "content-type",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-length",
+              "value": "44",
+              "name": "content-length",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"2c-XIHymdvKZMhCgVqRWC+kopSFrPM\"",
+              "name": "etag",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "date",
+              "value": "Fri, 16 Oct 2026 10:46:49 GMT",
+              "name": "date",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive",
+              "name": "connection",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=5",
+              "name": "keep-alive",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"status\": \"healthy\"\n  }\n}",
+          "_postman_previewlanguage": "json"
+        }
+      ]
+    },
+    {
+      "name": "Client Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "protocol": "",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"seed.client.ava@example.com\",\n  \"password\": \"rootpw1\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "example",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "protocol": "",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"seed.client.ava@example.com\",\n  \"password\": \"rootpw1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "x-powered-by",
+              "value": "Express",
+              "name": "x-powered-by",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8",
+              "name": "content-type",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-length",
+              "value": "283",
+              "name": "content-length",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"11b-zioLmwG5F4MQpnWT7VOIjxvqRL8\"",
+              "name": "etag",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "date",
+              "value": "Fri, 16 Oct 2026 10:50:32 GMT",
+              "name": "date",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive",
+              "name": "connection",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=5",
+              "name": "keep-alive",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3OTIxNDc4MzIsImV4cCI6MTc5MjE1MTQzMn0.hRMYbHHZ3EXI_j59Re9hCf3GPgFnbe8lBspiEX2lqKE\",\n    \"user\": {\n      \"id\": 3,\n      \"email\": \"seed.client.ava@example.com\",\n      \"role\": \"client\"\n    }\n  },\n  \"error\": null\n}",
+          "_postman_previewlanguage": "json"
+        }
+      ]
+    },
+    {
+      "name": "Artist Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "protocol": "",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"seed.artist.liam@example.com\",\n  \"password\": \"rootpw1\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "example",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "protocol": "",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"seed.artist.maya@example.com\",\n  \"password\": \"rootpw1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "x-powered-by",
+              "value": "Express",
+              "name": "x-powered-by",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8",
+              "name": "content-type",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-length",
+              "value": "284",
+              "name": "content-length",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"11c-wsW5tK6gBgnZH02E0WTKNWhCOWw\"",
+              "name": "etag",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "date",
+              "value": "Fri, 16 Oct 2026 10:51:09 GMT",
+              "name": "date",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive",
+              "name": "connection",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=5",
+              "name": "keep-alive",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhcnRpc3QiLCJpYXQiOjE3OTIxNDc4NjksImV4cCI6MTc5MjE1MTQ2OX0.f8Vq_Ehz4O_VelyWwbRTvPfPePfT3__0zNwplvPxMLg\",\n    \"user\": {\n      \"id\": 1,\n      \"email\": \"seed.artist.maya@example.com\",\n      \"role\": \"artist\"\n    }\n  },\n  \"error\": null\n}",
+          "_postman_previewlanguage": "json"
+        }
+      ]
+    },
+    {
+      "name": "Create a booking",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "",
+            "disabled": false,
+            "type": "default"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3OTIxNDg1OTcsImV4cCI6MTc5MjE1MjE5N30.5xXYVW3C7qINQ1lGa6tCrDx3pN3I1Q8XvgMK7i3Ecas",
+            "description": "",
+            "disabled": false,
+            "type": "default"
+          }
+        ],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{baseUrl}}/bookings",
+          "protocol": "",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bookings"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"artist_id\": 2,\n  \"event_start\": \"2026-10-30T17:00:00+05:30\",\n  \"event_end\": \"2026-10-30T19:00:00+05:30\",\n  \"notes\": \"Bruno end-to-end API test\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "example",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE3OTIxNDg1OTcsImV4cCI6MTc5MjE1MjE5N30.5xXYVW3C7qINQ1lGa6tCrDx3pN3I1Q8XvgMK7i3Ecas",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/bookings",
+              "protocol": "",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bookings"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"artist_id\": 2,\n  \"event_start\": \"2026-10-30T17:00:00+05:30\",\n  \"event_end\": \"2026-10-30T19:00:00+05:30\",\n  \"notes\": \"Bruno end-to-end API test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "x-powered-by",
+              "value": "Express",
+              "name": "x-powered-by",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8",
+              "name": "content-type",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-length",
+              "value": "205",
+              "name": "content-length",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"cd-cdYx3LnIcq/IukB2Q4oDsOCnB54\"",
+              "name": "etag",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "date",
+              "value": "Fri, 16 Oct 2026 11:05:23 GMT",
+              "name": "date",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive",
+              "name": "connection",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=5",
+              "name": "keep-alive",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": 22,\n    \"artistId\": 2,\n    \"clientId\": 3,\n    \"eventStart\": \"2026-10-30T11:30:00.000Z\",\n    \"eventEnd\": \"2026-10-30T13:30:00.000Z\",\n    \"notes\": \"Bruno end-to-end API test\",\n    \"status\": \"pending\"\n  },\n  \"error\": null\n}",
+          "_postman_previewlanguage": "json"
+        }
+      ]
+    },
+    {
+      "name": "Confirm Booking",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "",
+            "disabled": false,
+            "type": "default"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJhcnRpc3QiLCJpYXQiOjE3OTIxNTMzNzQsImV4cCI6MTc5MjE1Njk3NH0.l_5haDRX0K8pIyZ_CqGascC97XB45kvuVWrAiNtEAdU",
+            "description": "",
+            "disabled": false,
+            "type": "default"
+          }
+        ],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{baseUrl}}/bookings/10/status",
+          "protocol": "",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bookings",
+            "10",
+            "status"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"confirmed\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "example",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJhcnRpc3QiLCJpYXQiOjE3OTIxNTMzNzQsImV4cCI6MTc5MjE1Njk3NH0.l_5haDRX0K8pIyZ_CqGascC97XB45kvuVWrAiNtEAdU",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/bookings/10/status",
+              "protocol": "",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bookings",
+                "10",
+                "status"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"confirmed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "x-powered-by",
+              "value": "Express",
+              "name": "x-powered-by",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8",
+              "name": "content-type",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-length",
+              "value": "67",
+              "name": "content-length",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"43-721WgH7tSQp33Avqr35n7y1f0QI\"",
+              "name": "etag",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "date",
+              "value": "Fri, 16 Oct 2026 12:23:23 GMT",
+              "name": "date",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive",
+              "name": "connection",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=5",
+              "name": "keep-alive",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": 10,\n    \"status\": \"confirmed\"\n  },\n  \"error\": null\n}",
+          "_postman_previewlanguage": "json"
+        }
+      ]
+    },
+    {
+      "name": "Retrieve reviews",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "http://localhost:3000/artists/2/reviews?page=1&limit=10",
+          "protocol": "http",
+          "host": [
+            "localhost:3000"
+          ],
+          "path": [
+            "artists",
+            "2",
+            "reviews"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ],
+          "variable": []
+        }
+      },
+      "response": [
+        {
+          "name": "example",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/artists/2/reviews?page=1&limit=10",
+              "protocol": "http",
+              "host": [
+                "localhost:3000"
+              ],
+              "path": [
+                "artists",
+                "2",
+                "reviews"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "x-powered-by",
+              "value": "Express",
+              "name": "x-powered-by",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8",
+              "name": "content-type",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "content-length",
+              "value": "593",
+              "name": "content-length",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"251-wjbK+Gi6eQAS3D4HKStMn76CG4U\"",
+              "name": "etag",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "date",
+              "value": "Fri, 16 Oct 2026 11:10:45 GMT",
+              "name": "date",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive",
+              "name": "connection",
+              "description": "",
+              "type": "text"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=5",
+              "name": "keep-alive",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"artistId\": 2,\n    \"page\": 1,\n    \"limit\": 10,\n    \"reviews\": [\n      {\n        \"bookingId\": 9,\n        \"clientId\": 3,\n        \"score\": 5,\n        \"comment\": \"Relaxed Sunday brunch vibe, highly recommended.\",\n        \"createdAt\": \"2026-10-11T02:49:52.000Z\"\n      },\n      {\n        \"bookingId\": 8,\n        \"clientId\": 4,\n        \"score\": 4,\n        \"comment\": \"Great acoustic setlist and easy setup.\",\n        \"createdAt\": \"2026-10-03T02:49:52.000Z\"\n      },\n      {\n        \"bookingId\": 7,\n        \"clientId\": 3,\n        \"score\": 5,\n        \"comment\": \"Beautiful fingerstyle arrangements during cocktail hour.\",\n        \"createdAt\": \"2026-09-20T02:49:52.000Z\"\n      }\n    ],\n    \"summary\": {\n      \"averageScore\": 4.67,\n      \"totalReviews\": 3,\n      \"distribution\": {\n        \"1\": 0,\n        \"2\": 0,\n        \"3\": 0,\n        \"4\": 1,\n        \"5\": 2\n      }\n    }\n  },\n  \"error\": null\n}",
+          "_postman_previewlanguage": "json"
+        }
+      ]
+    },
+    {
+      "name": "Update Booking Status",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "",
+            "disabled": false,
+            "type": "default"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJhcnRpc3QiLCJpYXQiOjE3OTIxNTMzNzQsImV4cCI6MTc5MjE1Njk3NH0.l_5haDRX0K8pIyZ_CqGascC97XB45kvuVWrAiNtEAdU",
+            "description": "",
+            "disabled": false,
+            "type": "default"
+          }
+        ],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "",
+        "url": {
+          "raw": "{{baseUrl}}/bookings/10/status",
+          "protocol": "",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bookings",
+            "10",
+            "status"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"completed\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "default"
+    },
+    {
+      "key": "clientEmail",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "seedPassword",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "artistId",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
