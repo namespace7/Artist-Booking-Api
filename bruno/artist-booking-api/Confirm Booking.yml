@@ -1,0 +1,72 @@
+info:
+  name: Confirm Booking
+  type: http
+  seq: 5
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/bookings/10/status"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Authorization
+      value: Bearer {{artistToken}}
+  body:
+    type: json
+    data: |-
+      {
+        "status": "confirmed"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: example
+    request:
+      url: "{{baseUrl}}/bookings/10/status"
+      method: PATCH
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{artistToken}}
+      body:
+        type: json
+        data: |-
+          {
+            "status": "confirmed"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: x-powered-by
+          value: Express
+        - name: content-type
+          value: application/json; charset=utf-8
+        - name: content-length
+          value: "67"
+        - name: etag
+          value: W/"43-721WgH7tSQp33Avqr35n7y1f0QI"
+        - name: date
+          value: Fri, 16 Oct 2026 12:23:23 GMT
+        - name: connection
+          value: keep-alive
+        - name: keep-alive
+          value: timeout=5
+      body:
+        type: json
+        data: |-
+          {
+            "success": true,
+            "data": {
+              "id": 10,
+              "status": "confirmed"
+            },
+            "error": null
+          }

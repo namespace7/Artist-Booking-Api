@@ -9,6 +9,8 @@
     "test": "jest --runInBand"
   },
   "jest": {
+    "globalSetup": "<rootDir>/tests/globalSetup.js",
+    "globalTeardown": "<rootDir>/tests/globalTeardown.js",
     "setupFiles": [
       "<rootDir>/tests/setup.js"
     ]

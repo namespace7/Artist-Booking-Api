@@ -18,6 +18,7 @@ module.exports = {
       const booking = await bookingService.createBooking(
         req.user,
         req.body || {},
+        req.get("Idempotency-Key"),
       );
 
       return res.status(201).json({

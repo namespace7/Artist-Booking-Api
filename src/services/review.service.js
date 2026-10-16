@@ -1,5 +1,16 @@
 const pool = require("../config/mysql");
+const mysql = require("mysql2");
 const reviewRepository = require("../repositories/review.repository");
+
+const DEBUG_SQL = process.env.DEBUG_SQL === "true";
+
+function logSql(label, sql, params) {
+  if (!DEBUG_SQL) {
+    return;
+  }
+
+  console.debug(`\n[SQL DEBUG] ${label}\n${mysql.format(sql, params)}\n`);
+}
 
 class ReviewError extends Error {
   constructor(statusCode, message) {
@@ -29,32 +40,24 @@ module.exports = {
       throw new ReviewError(400, "limit must be an integer between 1 and 100");
     }
 
-    const [artists] = await pool.execute(
-      "SELECT id FROM users WHERE id = ? AND role = ?",
-      [artistId, "artist"],
-    );
+    // Verify that the requested user exists and has the artist role.
+    const artistSql = "SELECT id FROM users WHERE id = ? AND role = ?";
+    const artistParams = [artistId, "artist"];
+
+    logSql("getArtistReviews: verify artist", artistSql, artistParams);
+
+    const [artists] = await pool.execute(artistSql, artistParams);
 
     if (artists.length === 0) {
       throw new ReviewError(404, "Artist not found");
     }
 
-    // MySQL owns booking state. Only completed bookings qualify.
-    const [bookings] = await pool.execute(
-      `SELECT id
-       FROM bookings
-       WHERE artist_id = ? AND status = 'completed'`,
-      [artistId],
-    );
-
-    const bookingIds = bookings.map(function (booking) {
-      return booking.id;
-    });
-
-    const skip = (page - 1) * limit;
+    // The repository queries only reviews associated with completed bookings.
+    const offset = (page - 1) * limit;
 
     const [reviews, summary] = await Promise.all([
-      reviewRepository.findEligibleForArtist(artistId, bookingIds, skip, limit),
-      reviewRepository.summarizeEligibleForArtist(artistId, bookingIds),
+      reviewRepository.findEligibleForArtist(artistId, limit, offset),
+      reviewRepository.summarizeEligibleForArtist(artistId),
     ]);
 
     return {

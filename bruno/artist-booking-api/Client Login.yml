@@ -1,0 +1,68 @@
+info:
+  name: Client Login
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/login"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "seed.client.ava@example.com",
+        "password": "rootpw1"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: example
+    request:
+      url: "{{baseUrl}}/auth/login"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "email": "seed.client.ava@example.com",
+            "password": "rootpw1"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: x-powered-by
+          value: Express
+        - name: content-type
+          value: application/json; charset=utf-8
+        - name: content-length
+          value: "283"
+        - name: etag
+          value: W/"11b-zioLmwG5F4MQpnWT7VOIjxvqRL8"
+        - name: date
+          value: Fri, 16 Oct 2026 10:50:32 GMT
+        - name: connection
+          value: keep-alive
+        - name: keep-alive
+          value: timeout=5
+      body:
+        type: json
+        data: |-
+          {
+            "success": true,
+            "data": {
+              "token": "REDACTED_TOKEN",
+              "user": {
+                "id": 3,
+                "email": "seed.client.ava@example.com",
+                "role": "client"
+              }
+            },
+            "error": null
+          }

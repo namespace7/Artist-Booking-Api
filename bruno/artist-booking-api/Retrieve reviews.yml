@@ -1,0 +1,99 @@
+info:
+  name: Retrieve reviews
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: http://localhost:3000/artists/2/reviews?page=1&limit=10
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "10"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: example
+    request:
+      url: http://localhost:3000/artists/2/reviews?page=1&limit=10
+      method: GET
+      params:
+        - name: page
+          value: "1"
+          type: query
+        - name: limit
+          value: "10"
+          type: query
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: x-powered-by
+          value: Express
+        - name: content-type
+          value: application/json; charset=utf-8
+        - name: content-length
+          value: "593"
+        - name: etag
+          value: W/"251-wjbK+Gi6eQAS3D4HKStMn76CG4U"
+        - name: date
+          value: Fri, 16 Oct 2026 11:10:45 GMT
+        - name: connection
+          value: keep-alive
+        - name: keep-alive
+          value: timeout=5
+      body:
+        type: json
+        data: |-
+          {
+            "success": true,
+            "data": {
+              "artistId": 2,
+              "page": 1,
+              "limit": 10,
+              "reviews": [
+                {
+                  "bookingId": 9,
+                  "clientId": 3,
+                  "score": 5,
+                  "comment": "Relaxed Sunday brunch vibe, highly recommended.",
+                  "createdAt": "2026-10-11T02:49:52.000Z"
+                },
+                {
+                  "bookingId": 8,
+                  "clientId": 4,
+                  "score": 4,
+                  "comment": "Great acoustic setlist and easy setup.",
+                  "createdAt": "2026-10-03T02:49:52.000Z"
+                },
+                {
+                  "bookingId": 7,
+                  "clientId": 3,
+                  "score": 5,
+                  "comment": "Beautiful fingerstyle arrangements during cocktail hour.",
+                  "createdAt": "2026-09-20T02:49:52.000Z"
+                }
+              ],
+              "summary": {
+                "averageScore": 4.67,
+                "totalReviews": 3,
+                "distribution": {
+                  "1": 0,
+                  "2": 0,
+                  "3": 0,
+                  "4": 1,
+                  "5": 2
+                }
+              }
+            },
+            "error": null
+          }

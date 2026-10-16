@@ -1,84 +1,72 @@
-const Review = require("../models/review.model");
+const pool = require("../config/mysql");
+const mysql = require("mysql2");
+
+// Enable SQL debugging only when DEBUG_SQL=true.
+const DEBUG_SQL = process.env.DEBUG_SQL === "true";
+
+function logSql(label, sql, params) {
+  if (!DEBUG_SQL) {
+    return;
+  }
+
+  console.debug(`\n[SQL DEBUG] ${label}\n${mysql.format(sql, params)}\n`);
+}
 
 function emptyDistribution() {
   return { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 }
 
 module.exports = {
-  async findEligibleForArtist(artistId, bookingIds, skip, limit) {
-    if (bookingIds.length === 0) {
-      return [];
-    }
+  // Returns paginated reviews for an artist whose bookings are completed.
+  async findEligibleForArtist(artistId, limit, offset) {
+    const sql = `
+      SELECT
+        r.booking_id AS bookingId,
+        b.client_id AS clientId,
+        r.score,
+        r.comment,
+        r.created_at AS createdAt
+      FROM reviews r
+      JOIN bookings b ON b.id = r.booking_id
+      WHERE b.artist_id = ? AND b.status = 'completed'
+      ORDER BY r.created_at DESC, r.id DESC
+      LIMIT ? OFFSET ?
+    `;
 
-    return Review.find({
-      artistId,
-      bookingId: { $in: bookingIds },
-    })
-      .sort({ createdAt: -1, _id: -1 })
-      .skip(skip)
-      .limit(limit)
-      .select("bookingId clientId score comment createdAt")
-      .lean();
+    const params = [artistId, limit, offset];
+
+    logSql("findEligibleForArtist", sql, params);
+
+    const [rows] = await pool.execute(sql, params);
+
+    return rows;
   },
 
-  async summarizeEligibleForArtist(artistId, bookingIds) {
-    if (bookingIds.length === 0) {
-      return {
-        averageScore: 0,
-        totalReviews: 0,
-        distribution: emptyDistribution(),
-      };
-    }
+  // Calculates the summary for the same eligible reviews as above.
+  async summarizeEligibleForArtist(artistId) {
+    const sql = `
+      SELECT
+        COUNT(*) AS totalReviews,
+        AVG(r.score) AS averageScore,
+        SUM(r.score = 1) AS score1,
+        SUM(r.score = 2) AS score2,
+        SUM(r.score = 3) AS score3,
+        SUM(r.score = 4) AS score4,
+        SUM(r.score = 5) AS score5
+      FROM reviews r
+      JOIN bookings b ON b.id = r.booking_id
+      WHERE b.artist_id = ? AND b.status = 'completed'
+    `;
 
-    const [result] = await Review.aggregate([
-      {
-        $match: {
-          artistId,
-          bookingId: { $in: bookingIds },
-        },
-      },
-      {
-        $group: {
-          _id: null,
-          averageScore: { $avg: "$score" },
-          totalReviews: { $sum: 1 },
-          counts: {
-            $push: "$score",
-          },
-        },
-      },
-      {
-        $project: {
-          _id: 0,
-          averageScore: 1,
-          totalReviews: 1,
-          distribution: {
-            $arrayToObject: {
-              $map: {
-                input: [1, 2, 3, 4, 5],
-                as: "score",
-                in: {
-                  k: { $toString: "$$score" },
-                  v: {
-                    $size: {
-                      $filter: {
-                        input: "$counts",
-                        as: "existingScore",
-                        cond: {
-                          $eq: ["$$existingScore", "$$score"],
-                        },
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    ]);
+    const params = [artistId];
 
-    if (!result) {
+    logSql("summarizeEligibleForArtist", sql, params);
+
+    const [[row]] = await pool.execute(sql, params);
+
+    const totalReviews = Number(row.totalReviews);
+
+    if (totalReviews === 0) {
       return {
         averageScore: 0,
         totalReviews: 0,
@@ -87,9 +75,15 @@ module.exports = {
     }
 
     return {
-      averageScore: Number(result.averageScore.toFixed(2)),
-      totalReviews: result.totalReviews,
-      distribution: result.distribution,
+      averageScore: Number(Number(row.averageScore).toFixed(2)),
+      totalReviews,
+      distribution: {
+        1: Number(row.score1),
+        2: Number(row.score2),
+        3: Number(row.score3),
+        4: Number(row.score4),
+        5: Number(row.score5),
+      },
     };
   },
 };

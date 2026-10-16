@@ -1,0 +1,83 @@
+info:
+  name: Create a booking
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Authorization
+      value: Bearer {{clientToken}}
+  body:
+    type: json
+    data: |-
+      {
+        "artist_id": 2,
+        "event_start": "2026-10-30T17:00:00+05:30",
+        "event_end": "2026-10-30T19:00:00+05:30",
+        "notes": "Bruno end-to-end API test"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: example
+    request:
+      url: "{{baseUrl}}/bookings"
+      method: POST
+      headers:
+        - name: Content-Type
+          value: application/json
+        - name: Authorization
+          value: Bearer {{clientToken}}
+      body:
+        type: json
+        data: |-
+          {
+            "artist_id": 2,
+            "event_start": "2026-10-30T17:00:00+05:30",
+            "event_end": "2026-10-30T19:00:00+05:30",
+            "notes": "Bruno end-to-end API test"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: x-powered-by
+          value: Express
+        - name: content-type
+          value: application/json; charset=utf-8
+        - name: content-length
+          value: "205"
+        - name: etag
+          value: W/"cd-cdYx3LnIcq/IukB2Q4oDsOCnB54"
+        - name: date
+          value: Fri, 16 Oct 2026 11:05:23 GMT
+        - name: connection
+          value: keep-alive
+        - name: keep-alive
+          value: timeout=5
+      body:
+        type: json
+        data: |-
+          {
+            "success": true,
+            "data": {
+              "id": 22,
+              "artistId": 2,
+              "clientId": 3,
+              "eventStart": "2026-10-30T11:30:00.000Z",
+              "eventEnd": "2026-10-30T13:30:00.000Z",
+              "notes": "Bruno end-to-end API test",
+              "status": "pending"
+            },
+            "error": null
+          }
