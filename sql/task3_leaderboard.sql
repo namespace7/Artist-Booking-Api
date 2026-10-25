@@ -91,25 +91,25 @@ LIMIT 10;
 
 --- BREAKING THE LARGE QUERY INTO TABLE DEFINITIONS FOR CLARITY ---
 -- 1.GET Each artist's average score and review count
-SELECT 
-    b.artist_id, 
-    ROUND(AVG(r.score),2) AS average_score, 
-    COUNT(*) AS total_reviews 
-FROM reviews r 
-JOIN bookings b on b.id = r.booking_id 
-WHERE r.created_at >= now() - INTERVAL 90 DAY 
-    AND b.status = 'complete' 
-GROUP BY b.artist_id 
-HAVING COUNT(*) >=5;
+-- SELECT 
+--     b.artist_id, 
+--     ROUND(AVG(r.score),2) AS average_score, 
+--     COUNT(*) AS total_reviews 
+-- FROM reviews r 
+-- JOIN bookings b on b.id = r.booking_id 
+-- WHERE r.created_at >= now() - INTERVAL 90 DAY 
+--     AND b.status = 'complete' 
+-- GROUP BY b.artist_id 
+-- HAVING COUNT(*) >=5;
 
 -- 2. Count each artist's completed bookings
-SELECT
-    artist_id,
-    COUNT(*) as completed_count
-FROM bookings
-WHERE status= 'complete'
-GROUP BY artist_id;
+-- SELECT
+--     artist_id,
+--     COUNT(*) as completed_count
+-- FROM bookings
+-- WHERE status= 'complete'
+-- GROUP BY artist_id;
 
 -- 3. Get artist name and category
-SELECT id, name, category from users
-WHERE role ='artist';
+-- SELECT id, name, category from users
+-- WHERE role ='artist';
