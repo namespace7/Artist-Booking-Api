@@ -89,7 +89,7 @@ LIMIT 10;
 
 
 
---- BREAKING THE LARGE QUERY INTO TABLE DEFINITIONS FOR CLARITY ---
+-- BREAKING THE LARGE QUERY INTO TABLE DEFINITIONS FOR CLARITY ---
 -- 1.GET Each artist's average score and review count
 -- SELECT 
 --     b.artist_id, 
